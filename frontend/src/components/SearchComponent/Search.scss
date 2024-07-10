@@ -1,0 +1,33 @@
+.search-bar-container {
+  display: flex;
+  margin-left: 8%;
+}
+
+.search-bar {
+  border: none; // Reset all borders
+  height: 35px;
+  width: 15%;
+  border-bottom: 0.2px solid black;  
+
+  input {
+    font-family: 'Bebas Neue', cursive;
+  }
+
+  input:focus {
+    border: none; // Reset borders again on focus
+    outline: none;
+  }
+
+  &::placeholder {
+    padding: 0 10px;
+  }
+
+  .search-button {
+    background-color: royalblue;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}

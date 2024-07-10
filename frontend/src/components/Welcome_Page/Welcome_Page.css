@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+body {
+  margin: 0;
+  background-color: rgb(225, 241, 255);
+}
+
+.container .links ul {
+  display: flex;
+  gap: 15%;
+  font-size: 170%;
+}
+.container .links ul li {
+  cursor: pointer;
+  color: #202020;
+  text-decoration: none;
+  text-align: center;
+  font-family: "Bebas Neue", cursive;
+  display: inline-block;
+  position: relative;
+}
+.container .links ul li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+.container .links ul li:hover::after {
+  width: 100%;
+}
+.container .main-block {
+  display: flex;
+  margin-top: 20%;
+  margin-left: 10%;
+  color: rgb(58, 58, 58);
+  position: absolute;
+}
+.container .main-block .slogan {
+  font-size: 500%;
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.container .main-block .slogan .tech {
+  -webkit-text-stroke-width: 2.1px;
+  -webkit-text-stroke-color: rgb(6, 30, 247);
+  color: white;
+}
+.container .main-block .slogan .supermarket {
+  color: rgb(6, 30, 247);
+}
+.container .main-block .slogan h5 {
+  font-size: 35%;
+}/*# sourceMappingURL=Welcome_Page.css.map */

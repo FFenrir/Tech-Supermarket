@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3%;
+  margin-left: 2%;
+}
+
+.product-card {
+  width: calc(33% - 5px);
+  margin: 2.5px;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+.product-card img {
+  margin-left: 20%;
+  height: 155px;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-bottom: 1px solid black;
+}
+.product-card h2 {
+  text-align: center;
+}
+.product-card .product-name {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 110%;
+}
+.product-card ul {
+  margin-right: 3%;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.product-card ul li {
+  padding: 2%;
+  list-style: none;
+  font-size: 90%;
+}
+.product-card .price {
+  font-size: 150%;
+}
+.product-card .compare-button {
+  margin-left: 15%;
+  height: 40px;
+  width: 70%;
+  color: white;
+  background-color: rgb(32, 161, 20);
+  border: none;
+  border-radius: 7px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  cursor: pointer;
+}
+.product-card .buy-button {
+  margin-top: 3%;
+  margin-left: 15%;
+  height: 45px;
+  width: 70%;
+  background-color: rgb(6, 30, 247);
+  border: none;
+  border-radius: 7px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  cursor: pointer;
+}
+.product-card .buy-button a {
+  text-decoration: none;
+  color: white;
+}/*# sourceMappingURL=Graphics_Cards.css.map */

@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Fun&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+$base-font-size: 16px; // Define a base font size
+
+
+.menu-container {
+  border-bottom-left-radius: 200px;
+  border-bottom-right-radius: 200px;
+}
+
+.top-menu {
+  display: flex;
+  gap: 15%;
+  width: 100%;
+  margin-top: 3.5%;
+  
+  .search-bar-container {
+    display: flex;
+    margin-left: 8%;
+  }
+  
+  .search-bar {
+    border: none; // Reset all borders
+    height: 80%;
+    width: 100%;
+    border-bottom: 0.2px solid black;  
+  
+    input {
+      font-family: 'Bebas Neue', cursive;
+    }
+
+    input:focus {
+      border: none; // Reset borders again on focus
+      outline: none;
+    }
+  
+    &::placeholder {
+      padding: 0 10px;
+    }
+  
+    .search-button {
+      background-color: royalblue;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+  
+
+  .authentication {
+    display: flex;
+    gap: 17%;
+    align-items: center;
+    font-size: 1.4em; // relative font size based on $base-font-size
+    justify-content: center;
+
+    .logo {
+      position: relative;
+      font-size: 1.3em; // relative font size based on $base-font-size
+      font-family: 'Bruno Ace SC', cursive;
+      color: white;
+      font-family: "Anton", sans-serif;
+      font-weight: 300;
+      font-style: normal;
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: royalblue;
+  
+      span {
+        color: royalblue;
+        -webkit-text-stroke-width: 0px;
+      }
+    }
+
+    .log-in,
+    .sign-up {
+      font-size: 80%;
+      color: #202020;
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
+      position: relative;
+      font-family: "Raleway", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 0;
+        height: 1px;
+        background-color: black;
+        transition: width 0.3s ease;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 2%;
+  justify-content: center;
+  margin-top: 1.5%;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+
+
+  .laptop-filter {
+    display: flex;
+    //font-size: $base-font-size * 0.7.2; // base font size for responsiveness
+    font-size: 90%;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    gap: 5%;
+    align-items: center;
+    white-space: nowrap;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+    //border-top: 1px solid gray;
+    //border-bottom: 1px solid gray;
+    transition: border-top-color 0.5s ease-in-out;
+    transition: border-bottom-color 0.5s ease-in-out;
+
+    .laptop-filter:hover {
+      color: royalblue;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 1px;
+      background-color: black;
+      transition: width 0.3s ease;
+    }
+
+    //&:hover::after {
+    //  width: 100%;
+
+    //}
+    
+    
+
+    /*&:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -15%;
+      transform: translateY(-50%);
+      height: 55%;
+      width: 1px;
+      background-color: black;
+    }*/
+  }
+  
+}
+
+// Media queries for responsiveness
+@media (max-width: 768px) {
+  .top-menu {
+    flex-direction: column;
+    align-items: center;
+    
+    .search-bar-container {
+      margin-left: 0;
+    }
+  }
+
+  .authentication {
+    flex-direction: column;
+    gap: 5%;
+  }
+
+  .filter-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .top-menu {
+    margin-top: 2%;
+    padding: 0 5%;
+  }
+
+  .authentication {
+    font-size: 1.2em;
+
+    .log-in,
+    .sign-up {
+      font-size: 70%;
+    }
+  }
+
+  .filter-buttons {
+    margin-top: 1%;
+  }
+}
+
+@media (min-width: 1920px) {
+  .top-menu {
+    .search-bar-container {
+      margin-right: 7%;
+    }   
+  }
+
+  .authentication {
+    .logo {
+      font-size: 1.5em;
+    }
+  }
+}
