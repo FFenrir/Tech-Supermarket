@@ -3,30 +3,34 @@ import axios from 'axios';
 import './Laptops.css';
 
 
-export function Laptops({ searchQuery ,onAddToCompare }) {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await axios.get('http://127.0.0.1:8000/store/laptops');
-                setProducts(response.data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-                setError('Failed to fetch products. Please try again later.');
-                setLoading(false);
-            }
-        };
+export function Laptops({ searchQuery, selectedStores = [] }) {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-        fetchProducts();
-    }, []);
+  useEffect(() => {
+      const fetchProducts = async () => {
+          try {
+              const url = 'http://127.0.0.1:8000/store/laptops';
+              const response = await axios.get(url);
+              setProducts(response.data);
+              setLoading(false);
+          } catch (error) {
+              console.error('Error fetching products:', error);
+              setError('Failed to fetch products. Please try again later.');
+              setLoading(false);
+          }
+      };
 
-    const filteredProducts = products.filter(product =>
-        product.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+      fetchProducts();
+  }, []);
+
+  const filteredProducts = products.filter(product => {
+    const matchesSearchQuery = product.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesStore = selectedStores.length === 0 || selectedStores.includes(product.store);
+    return matchesSearchQuery && matchesStore;
+  });
 
     if (loading) {
         return <div style={{textAlign:'center'}}>Loading...</div>;
@@ -36,9 +40,8 @@ export function Laptops({ searchQuery ,onAddToCompare }) {
         return <div>{error}</div>;
     }
 
-
-    
     return (
+      <div>
         <div className='container'>
           {filteredProducts.map(product => (
             <div key={product.id} className='product-card'>
@@ -53,10 +56,11 @@ export function Laptops({ searchQuery ,onAddToCompare }) {
                   <li>Storage: {product.hard_drive}</li>
                 </ul>
               </div>
-              <button className='compare-button' onClick={() => onAddToCompare({ ...product, category: 'Laptop' })}>Compare +</button>
+              <button className='compare-button'>Compare +</button>
               <button className='buy-button'><a href={product.product_link}>View at {product.store}</a></button>
             </div>
           ))}
         </div>
-      );
+      </div>  
+    );
 }

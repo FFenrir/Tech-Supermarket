@@ -5,14 +5,24 @@ from .models import Laptop, Graphics_Card
 
 
 class LaptopSerializer(serializers.ModelSerializer):
+    product_type = serializers.SerializerMethodField()
+    
     class Meta:
         model = Laptop
         fields = '__all__'
+    
+    def get_product_type(self, obj):
+        return 'laptop'
 
 class GPU_Serializer(serializers.ModelSerializer):
+    product_type = serializers.SerializerMethodField()
+
     class Meta:
         model = Graphics_Card
         fields = '__all__'       
+
+    def get_product_type(self, obj):
+        return 'graphics_card'
 
 class ProductSerializer(serializers.Serializer):
     id = serializers.IntegerField()

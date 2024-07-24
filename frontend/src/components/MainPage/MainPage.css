@@ -6,6 +6,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+body {
+  background-color: rgb(224, 248, 240);
+}
+
 .menu-container {
   border-bottom-left-radius: 200px;
   border-bottom-right-radius: 200px;
@@ -15,7 +19,8 @@
   display: flex;
   gap: 15%;
   width: 100%;
-  margin-top: 3.5%;
+  margin-top: 4%;
+  text-align: center;
 }
 .top-menu .search-bar-container {
   display: flex;
@@ -50,7 +55,7 @@
 }
 .top-menu .authentication {
   display: flex;
-  gap: 17%;
+  gap: 18%;
   align-items: center;
   font-size: 1.4em;
   justify-content: center;
@@ -72,13 +77,13 @@
 }
 .top-menu .authentication .log-in,
 .top-menu .authentication .sign-up {
-  font-size: 80%;
+  font-size: 105%;
   color: #202020;
   text-decoration: none;
   text-align: center;
   display: inline-block;
   position: relative;
-  font-family: "Raleway", sans-serif;
+  font-family: "Bebas Neue", cursive;
   font-optical-sizing: auto;
   font-style: normal;
 }
@@ -102,9 +107,9 @@
   display: flex;
   gap: 2%;
   justify-content: center;
-  margin-top: 1.5%;
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
+  margin-top: 2%;
+  background-color: royalblue;
+  color: white;
 }
 .filter-buttons .laptop-filter {
   display: flex;
@@ -120,18 +125,9 @@
   position: relative;
   transition: border-top-color 0.5s ease-in-out;
   transition: border-bottom-color 0.5s ease-in-out;
-  /*&:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: -15%;
-    transform: translateY(-50%);
-    height: 55%;
-    width: 1px;
-    background-color: black;
-  }*/
 }
-.filter-buttons .laptop-filter .laptop-filter:hover {
+.filter-buttons .laptop-filter:hover {
+  background-color: white;
   color: royalblue;
 }
 .filter-buttons .laptop-filter::after {
@@ -143,6 +139,38 @@
   height: 1px;
   background-color: black;
   transition: width 0.3s ease;
+}
+
+.filter-button {
+  position: relative;
+  display: flex;
+  gap: 15%;
+  height: 35px;
+  width: 10%;
+  cursor: pointer;
+  text-align: center;
+  align-items: center;
+  margin-top: 3.5%;
+  margin-left: 3%;
+  border: 0.7px solid royalblue;
+  border-radius: 10px;
+  color: royalblue;
+  font-family: "Poppins", sans-serif;
+  font-size: 90%;
+}
+
+.store-dropdown {
+  justify-content: center;
+  margin-top: 1.5%;
+  margin-left: 2%;
+  height: 100px;
+  width: 12%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.store-dropdown label {
+  margin-left: 2em;
 }
 
 @media (max-width: 768px) {

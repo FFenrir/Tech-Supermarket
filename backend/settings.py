@@ -30,6 +30,13 @@ ALLOWED_HOSTS = []
 
 CORS_ORIGIN_WHITELIST = ( 'http://localhost:3000', )
 
+CORS_ALLOW_METHODS = [
+    'GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+
 AUTH_USER_MODEL = 'accounts.User'
 
 # Application definition

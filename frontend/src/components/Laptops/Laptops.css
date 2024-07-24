@@ -14,10 +14,11 @@
   overflow: hidden;
   justify-content: center;
   align-items: center;
+  border-radius: 30px;
 }
 .product-card img {
   margin-left: 20%;
-  height: 170px;
+  height: 160px;
   width: auto;
   -o-object-fit: contain;
      object-fit: contain;
@@ -38,7 +39,7 @@
 }
 .product-card ul li {
   padding: 2%;
-  list-style: square;
+  list-style: none;
   font-size: 90%;
 }
 .product-card .price {

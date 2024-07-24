@@ -1,131 +1,153 @@
-import { useState } from 'react';
-import { Search } from 'react-bootstrap-icons';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { Search, FilterLeft } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import './MainPage.css'
-//import { Laptops } from '../Laptops/Laptops';
+
 import { GPUs } from '../Graphics_Cards/Graphics_Cards';
 import { Laptops } from '../Laptops/Laptops';
+import axios from 'axios';
 
+const SearchBar = React.memo(({ searchQuery, setSearchQuery, selectedStores }) => (
+  <div className='search-bar-container'>
+    {/*<Search color='black' size={28}/>*/}
+    <input
+      className='search-bar'
+      type="text"
+      placeholder={selectedStores.length ? `Search in ${selectedStores.join(', ')}...` : "Search deals"}
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      style={{ paddingLeft: '40px' }}
+    />
+  </div>
+));
 
+const FilterMenu = React.memo(({ stores, selectedStores, setSelectedStores, showStoreDropdown, setShowStoreDropdown }) => {
+  const handleStoreFilter = useCallback((store) => {
+    setSelectedStores(prev => 
+      prev.includes(store) ? prev.filter(s => s !== store) : [...prev, store]
+    );
+  }, [setSelectedStores]);
 
+  const toggleAllStores = useCallback(() => {
+    setSelectedStores(prev => prev.length === stores.length ? [] : [...stores]);
+  }, [setSelectedStores, stores]);
 
+  return (
+    <div className='filter-container'>
+      <button className='filter-button' onClick={() => setShowStoreDropdown(!showStoreDropdown)}>
+        <FilterLeft size={28} color='royalblue'/> Stores
+      </button>
+      {showStoreDropdown && (
+        <div className='store-dropdown'>
+          <label>
+            <input 
+              type='checkbox' 
+              onChange={toggleAllStores}
+              checked={selectedStores.length === stores.length}
+            />
+            All Stores
+          </label>
+          {stores.map(store => (
+            <label key={store}>
+              <input 
+                type='checkbox'
+                onChange={() => handleStoreFilter(store)}
+                checked={selectedStores.includes(store)}
+              />
+              {store}
+            </label>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+});
 
 export function ProductList() {
-  /*const [products, setProducts] = useState([]);*/
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedStores, setSelectedStores] = useState([]);
+  const [stores, setStores] = useState([]);
+  const [showStoreDropdown, setShowStoreDropdown] = useState(false);
 
+  useEffect(() => {
+    const fetchStores = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/store/stores');
+        setStores(response.data);
+      } catch (error) {
+        console.error('Error fetching stores:', error);
+      }
+    };
 
+    fetchStores();
+  }, []);
 
-  const handleSearchInputChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
- 
-  const handleCategoryFilter = (category) => {
-    if (category === 'All'| category === null) {
-      setSelectedCategory(null); // Set the selected category to null to show all products
-    } else {
-      setSelectedCategory(category); // Update the selected category when a button other than "Show All" is clicked
-    }
+  const handleCategoryFilter = useCallback((category) => {
+    setSelectedCategory(category);
     setSearchQuery('');
-  };
+  }, []);
 
-
-  /*const filteredProducts = selectedCategory
-    ? products.filter((product) => product.category === selectedCategory)
-    : products;*/
-
-  /*const searchedProducts = filteredProducts.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );*/  
-
-  // Render different components or sections based on selectedCategory
-  const renderProducts = () => {
+  const renderProducts = useMemo(() => {
+    const commonProps = {
+      searchQuery,
+      selectedStores,
+    };
+  
     switch (selectedCategory) {
       case 'Laptops':
-        return (
-          <div style={{ marginTop: '5%' }}>
-            <Laptops searchQuery={searchQuery}/>
-          </div>
-        );
-      case 'Smartphones':
-        return (
-          <div>
-            {/* Render components related to Smartphones */}
-            <h2>Monitors</h2>
-            {/* Example: <Smartphones /> component or section */}
-          </div>
-        );
+        return <Laptops {...commonProps} />;
       case 'PC_parts':
-        return (
-          <div style={{ marginTop: '5%' }}>
-            <GPUs searchQuery={searchQuery}/>
-          </div>
-        );
+        return <GPUs {...commonProps} />;
+      case 'Monitors':
+        return <div>Monitors</div>
       case 'Consoles':
-        return (
-          <div style={{ marginTop: '5%' }}>
-            {/* Render components related to Consoles */}
-            <h2>Consoles</h2>
-          </div>
-        );
+        return <div>Consoles</div>
       default:
-        // Default case: Render all products or default section
         return (
-          <div>
-            <div className="mixed-products" style={{ marginTop: '5%' }}>
-              <Laptops searchQuery={searchQuery}/>
-              <GPUs searchQuery={searchQuery}/>
-            </div>
+          <div className="mixed-products">
+            <Laptops {...commonProps} />
+            <GPUs {...commonProps} />
           </div>
         );
     }
-  };
+  }, [selectedCategory, searchQuery, selectedStores]);
 
-
-
-return (
-  <div>
-    <title>BestDeals</title>
-    <div className='menu-container'>
-    <div className='top-menu'>
-          <div className='search-bar-container'>
-            <Search color='black' size={28}/>
-            <input
-              className='search-bar'
-              type="text"
-              placeholder="Search deals"
-              name="search"
-              value={searchQuery}
-              onChange={handleSearchInputChange}
-              style={{ paddingLeft: '40px' }} // Apply padding here
-            />
+  return (
+    <div>
+      <title>BestDeals</title>
+      <div className='menu-container'>
+        <div className='top-menu'>
+          <SearchBar 
+            searchQuery={searchQuery} 
+            setSearchQuery={setSearchQuery} 
+            selectedStores={selectedStores} 
+          />
+          <div className='authentication'>
+            <Link className='log-in' to='/about'>About</Link> 
+            <div className='logo'>Best<span>Deals</span></div>
+            <a className='sign-up' href='https://www.google.com'>Contacts</a>
           </div>
-      <div className='authentication'>
-        <Link className='log-in' to='/about'>About</Link> 
-        <div className='logo'>Best<span>Deals</span></div>
-        <a className='sign-up' href='https://www.google.com'><nobr>Contacts</nobr></a>
+        </div>
+        
+        <div className='filter-buttons'>
+          <div className='laptop-filter' onClick={() => handleCategoryFilter('All')}>All Products</div>
+          <div className='laptop-filter' onClick={() => handleCategoryFilter('Laptops')}>Laptops</div>
+          <div className='laptop-filter' onClick={() => handleCategoryFilter('PC_parts')}>PC Components</div>
+          <div className='laptop-filter' onClick={() => handleCategoryFilter('Monitors')}>Monitors</div>
+          <div className='laptop-filter' onClick={() => handleCategoryFilter('Consoles')}>Consoles</div>
+        </div>
       </div>
-      
-    </div>
-    
-    <div className='filter-buttons'>
-      <div className='laptop-filter' onClick={() => handleCategoryFilter('All')}>All Products</div>
-      <div className='laptop-filter' onClick={() => handleCategoryFilter('Laptops')}>{/*<Laptop color="rgb(218, 154, 36)" size={27}/>*/}Laptops</div>
-      <div className='laptop-filter' onClick={() => handleCategoryFilter('Smartphones')}>{/*<Display color="rgb(218, 154, 36)" size={27}/>*/}Displays</div>
-      <div className='laptop-filter' onClick={() => handleCategoryFilter('PC_parts') }>{/*<GpuCard color="rgb(218, 154, 36)" size={27}/>*/}PC Components</div>
-      <div className='laptop-filter' onClick={() => handleCategoryFilter('Consoles') }>{/*<GpuCard color="rgb(218, 154, 36)" size={27}/>*/}Consoles</div>
-    </div>
-    </div>
-    <div className='products-container'>
-    {renderProducts()}
-    </div>
-    {/*<div className='filter-buttons'>
-        <button onClick={() => handleCategoryFilter('All')}>All</button>
-        <button onClick={() => handleCategoryFilter('Laptops')}> <Laptop color="black" size={25} /> Laptops</button>
-        <button onClick={() => handleCategoryFilter('Smartphones')}>Smartphones</button>
-        <button onClick={() => handleCategoryFilter('TV')}>TV</button>
-    </div>*/}
+      <FilterMenu 
+        stores={stores}
+        selectedStores={selectedStores}
+        setSelectedStores={setSelectedStores}
+        showStoreDropdown={showStoreDropdown}
+        setShowStoreDropdown={setShowStoreDropdown}
+      />
+      <div className='products-container'>
+        {renderProducts}
+      </div>
     </div>
   );
 }
