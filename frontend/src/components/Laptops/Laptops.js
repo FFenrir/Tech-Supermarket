@@ -9,6 +9,15 @@ export function Laptops({ searchQuery, selectedStores = [] }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const storeColors = {
+    'Amazon': { backgroundColor: '#000000', color: '#FF9900' },
+    'B&H': { backgroundColor: '#ED1C24', color: '#FFF200' },
+    'Newegg': { backgroundColor: '#FF6600', color: '#000000' },
+    'Best Buy': { backgroundColor: '#0046BE', color: '#FFFFFF' },
+    'Walmart': { backgroundColor: '#0071CE', color: '#FFFFFF' },
+    // Add more stores as needed
+  };
+
   useEffect(() => {
       const fetchProducts = async () => {
           try {
@@ -57,7 +66,14 @@ export function Laptops({ searchQuery, selectedStores = [] }) {
                 </ul>
               </div>
               <button className='compare-button'>Compare +</button>
-              <button className='buy-button'><a href={product.product_link}>View at {product.store}</a></button>
+              <a href={product.product_link} style={{ color: 'inherit', textDecoration: 'none' }}>
+                <button 
+                  className='buy-button'
+                  style={storeColors[product.store] || {}}
+                >
+                  View at {product.store}
+                </button>
+              </a>  
             </div>
           ))}
         </div>
