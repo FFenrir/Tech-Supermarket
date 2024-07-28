@@ -50,25 +50,30 @@ export function GPUs({ searchQuery, onAddToCompare ,selectedStores = [] }) {
     <div className='container'>
       {filteredProducts.map(product => (
         <div key={product.id} className='product-card'>
-          <div className='product-info'>
-            <img src={product.image} alt='product' />
-            <h2>{product.name}</h2>
-            <span>Specs</span>
-            <ul>
-              <li>Clock Speed: {product.base_clock_speed}</li>
-              <li>VRAM: {product.memory_interface} {product.graphics_card_ram_size} </li>
-              <li>Dimensions: {product.item_dimensions}</li>
-            </ul>
+            <div className='product-image-container'>
+              <img src={product.image} alt={product.name} className='product-image' />
+            </div>
+            <div className='separator'></div>
+            <div className='product-info'>
+              <h2>{product.name}</h2>
+              <span>Specs</span>
+              <ul>
+                <li>Clock Speed: {product.base_clock_speed}</li>
+                <li>VRAM: {product.memory_interface} {product.graphics_card_ram_size} </li>
+                <li>Dimensions: {product.item_dimensions}</li>
+              </ul>
+            </div>
+          <div className='button-container'>
+            <button className='compare-button' onClick={() => onAddToCompare({ ...product, category: 'GPU' })}>Compare +</button>
+            <a href={product.product_link} style={{ color: 'inherit', textDecoration: 'none' }}>
+                  <button 
+                    className='buy-button'
+                    style={storeColors[product.store] || {}}
+                  >
+                    View at {product.store}
+                  </button>
+            </a>
           </div>
-          <button className='compare-button' onClick={() => onAddToCompare({ ...product, category: 'GPU' })}>Compare +</button>
-          <a href={product.product_link} style={{ color: 'inherit', textDecoration: 'none' }}>
-                <button 
-                  className='buy-button'
-                  style={storeColors[product.store] || {}}
-                >
-                  View at {product.store}
-                </button>
-              </a>  
         </div>
       ))}
     </div>

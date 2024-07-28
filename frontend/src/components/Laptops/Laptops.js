@@ -54,26 +54,31 @@ export function Laptops({ searchQuery, selectedStores = [] }) {
         <div className='container'>
           {filteredProducts.map(product => (
             <div key={product.id} className='product-card'>
+              <div className='product-image-container'>
+                <img src={product.image} alt={product.name} className='product-image' />
+              </div>
+              <div className='separator'></div>
               <div className='product-info'>
-                <img src={product.image} alt='product' />
                 <h2>{product.name}</h2>
                 <ul>
                   <li>{product.screen_display_size}'' - {product.screen_resolution}p</li>
-                  <li>CPU: {product.processor}</li>
-                  <li>GPU: {product.graphics_processor}</li>
-                  <li>RAM: {product.ram}</li>
-                  <li>Storage: {product.hard_drive}</li>
+                  <li>{product.processor} Processor</li>
+                  <li>{product.graphics_processor} GPU</li>
+                  <li>{product.ram} RAM</li>
+                  <li>{product.hard_drive} Storage</li>
                 </ul>
               </div>
-              <button className='compare-button'>Compare +</button>
-              <a href={product.product_link} style={{ color: 'inherit', textDecoration: 'none' }}>
-                <button 
-                  className='buy-button'
-                  style={storeColors[product.store] || {}}
-                >
-                  View at {product.store}
-                </button>
-              </a>  
+              <div className='button-container'>
+                <button className='compare-button'>Compare +</button>
+                <a href={product.product_link} style={{ color: 'inherit', textDecoration: 'none' }}>
+                  <button 
+                    className='buy-button'
+                    style={storeColors[product.store] || {}}
+                  >
+                    View at {product.store}
+                  </button>
+                </a>
+              </div>  
             </div>
           ))}
         </div>

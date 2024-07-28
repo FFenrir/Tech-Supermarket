@@ -12,43 +12,81 @@
   height: 577px;
   width: 20%;
   overflow: hidden;
-  justify-content: center;
-  align-items: center;
   border-radius: 30px;
 }
-.product-card img {
-  margin-left: 20%;
+.product-card .product-image-container {
+  margin: 0 auto;
   height: 160px;
-  width: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.product-card .product-image-container img {
+  margin: 0 auto;
+  max-height: 100%;
+  max-width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
-  border-bottom: 1px solid rgb(184, 184, 184);
+  border: none;
 }
-.product-card h2 {
+.product-card .separator {
+  height: 1px;
+  background-color: #c2bebe;
+  margin: 0 auto;
+  margin-top: 1.5%;
+  width: 60%;
+}
+.product-card .product-info {
+  height: 270px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+.product-card .product-info::-webkit-scrollbar {
+  width: 8px;
+}
+.product-card .product-info::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+.product-card .product-info::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+.product-card .product-info::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.product-card .product-info h2 {
   text-align: center;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 100%;
 }
-.product-card ul {
+.product-card .product-info ul {
   margin-right: 10%;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
-.product-card ul li {
+.product-card .product-info ul li {
   padding: 2%;
-  list-style: none;
+  list-style: square;
   font-size: 90%;
 }
-.product-card .price {
+.product-card .product-info .price {
   font-size: 150%;
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
-.product-card .compare-button {
+.product-card .button-container {
+  margin-top: auto;
+  padding: 10px 0;
+}
+.product-card .button-container .compare-button {
   margin-left: 15%;
   height: 40px;
   width: 70%;
@@ -61,7 +99,7 @@
   font-style: normal;
   cursor: pointer;
 }
-.product-card .buy-button {
+.product-card .button-container .buy-button {
   margin-top: 3%;
   margin-left: 15%;
   height: 45px;

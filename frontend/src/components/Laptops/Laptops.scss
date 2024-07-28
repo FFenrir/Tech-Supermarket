@@ -16,39 +16,86 @@
   height: 577px;
   width: 20%;
   overflow: hidden;
-  justify-content: center;
-  align-items: center;
   border-radius: 30px;
   //box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-
-  img {
-    margin-left: 20%;
+  .product-image-container {
+    margin: 0 auto;
     height: 160px;
-    width: auto;
-    object-fit: contain;
-    border-bottom: 1px solid rgb(184, 184, 184);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+
+    img {
+      margin: 0 auto;
+     //margin-left: 20%;
+      //height: 160px;
+     //width: auto;
+     // object-fit: contain;
+     max-height: 100%;
+     max-width: 100%;
+     object-fit: contain;
+     border: none;
+    }
   }
 
-  h2 {
+  
+  .separator {
+    height: 1px;
+    background-color: #c2bebe; // Light grey color, adjust as needed
+    margin: 0 auto;
+    margin-top: 1.5%;
+    width: 60%;
+  }
+
+  .product-info {
+    height: 270px;
+    overflow-y: auto;
+    
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+  
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+  
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  
+    // For Firefox
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+  
+    h2 {
     text-align: center;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 100%;
-  }
-
-  ul {
-    margin-right: 10%;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-
-    li {
-      padding: 2%;
-      list-style: none;
-      font-size: 90%;
     }
-  }
+
+    ul {
+      margin-right: 10%;
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+
+      li {
+        padding: 2%;
+        list-style: square;
+        font-size: 90%;
+      }
+    }
 
   .price {
     font-size: 150%;
@@ -56,34 +103,40 @@
     font-optical-sizing: auto;
     font-style: normal;
   }
-
-  .compare-button {
-    margin-left: 15%;
-    height: 40px;
-    width: 70%;
-    color: white;
-    background-color: rgb(32, 161, 20);
-    border: none;
-    border-radius: 7px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    cursor: pointer;
   }
+  
+  .button-container {
+    margin-top: auto;
+    padding: 10px 0;
 
-  .buy-button {
-    margin-top: 3%;
-    margin-left: 15%;
-    height: 45px;
-    width: 70%;
-    color: white;
-    background-color: rgb(6, 30, 247);
-    border: none;
-    border-radius: 7px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    cursor: pointer;
+    .compare-button {
+      margin-left: 15%;
+      height: 40px;
+      width: 70%;
+      color: white;
+      background-color: rgb(32, 161, 20);
+      border: none;
+      border-radius: 7px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      cursor: pointer;
+    }
+
+    .buy-button {
+      margin-top: 3%;
+      margin-left: 15%;
+      height: 45px;
+      width: 70%;
+      color: white;
+      background-color: rgb(6, 30, 247);
+      border: none;
+      border-radius: 7px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      cursor: pointer;
+    }
   }
 }
 
