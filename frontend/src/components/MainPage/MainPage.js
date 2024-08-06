@@ -1,18 +1,16 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { Search, FilterLeft } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
-import './MainPage.css'
-
-import { GPUs } from '../Graphics_Cards/Graphics_Cards';
+import React, { useState, useEffect, useCallback } from 'react';
+import { BrowserRouter as Router, Routes ,Route, Link, useNavigate } from 'react-router-dom';
 import { Laptops } from '../Laptops/Laptops';
+import { GPUs } from '../Graphics_Cards/Graphics_Cards';
 import { AllProducts } from '../All_Products/All_Products';
+import { FilterLeft } from 'react-bootstrap-icons'
+import './MainPage.css';
 import axios from 'axios';
 
 const SearchBar = React.memo(({ searchQuery, setSearchQuery, selectedStores }) => (
-  <div className='search-bar-container'>
-    {/*<Search color='black' size={28}/>*/}
+  <div className="search-bar-container">
     <input
-      className='search-bar'
+      className="search-bar"
       type="text"
       placeholder={selectedStores.length ? `Search in ${selectedStores.join(', ')}...` : "Search deals"}
       value={searchQuery}
@@ -24,7 +22,7 @@ const SearchBar = React.memo(({ searchQuery, setSearchQuery, selectedStores }) =
 
 const FilterMenu = React.memo(({ stores, selectedStores, setSelectedStores, showStoreDropdown, setShowStoreDropdown }) => {
   const handleStoreFilter = useCallback((store) => {
-    setSelectedStores(prev => 
+    setSelectedStores(prev =>
       prev.includes(store) ? prev.filter(s => s !== store) : [...prev, store]
     );
   }, [setSelectedStores]);
@@ -34,15 +32,15 @@ const FilterMenu = React.memo(({ stores, selectedStores, setSelectedStores, show
   }, [setSelectedStores, stores]);
 
   return (
-    <div className='filter-container'>
-      <button className='filter-button' onClick={() => setShowStoreDropdown(!showStoreDropdown)}>
-        <FilterLeft size={28} color='royalblue'/> Stores
+    <div className="filter-container">
+      <button className="filter-button" onClick={() => setShowStoreDropdown(!showStoreDropdown)}>
+        <FilterLeft size={28} color="royalblue" /> Stores
       </button>
       {showStoreDropdown && (
-        <div className='store-dropdown'>
+        <div className="store-dropdown">
           <label>
-            <input 
-              type='checkbox' 
+            <input
+              type="checkbox"
               onChange={toggleAllStores}
               checked={selectedStores.length === stores.length}
             />
@@ -50,8 +48,8 @@ const FilterMenu = React.memo(({ stores, selectedStores, setSelectedStores, show
           </label>
           {stores.map(store => (
             <label key={store}>
-              <input 
-                type='checkbox'
+              <input
+                type="checkbox"
                 onChange={() => handleStoreFilter(store)}
                 checked={selectedStores.includes(store)}
               />
@@ -64,12 +62,12 @@ const FilterMenu = React.memo(({ stores, selectedStores, setSelectedStores, show
   );
 });
 
-export function ProductList() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
+export function MainPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedStores, setSelectedStores] = useState([]);
   const [stores, setStores] = useState([]);
   const [showStoreDropdown, setShowStoreDropdown] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStores = async () => {
@@ -84,62 +82,26 @@ export function ProductList() {
     fetchStores();
   }, []);
 
-  const handleCategoryFilter = useCallback((category) => {
-    setSelectedCategory(category);
-    setSearchQuery('');
-  }, []);
-
-  const renderProducts = useMemo(() => {
-    const commonProps = {
-      searchQuery,
-      selectedStores,
-    };
-  
-    switch (selectedCategory) {
-      case 'Laptops':
-        return <Laptops {...commonProps} />;
-      case 'PC_parts':
-        return <GPUs {...commonProps} />;
-      case 'Monitors':
-        return <div>Monitors</div>
-      case 'Consoles':
-        return <div>Consoles</div>
-      default:
-        return (
-          <div className="mixed-products">
-            {/*<Laptops {...commonProps} />
-            <GPUs {...commonProps} />*/}
-            <AllProducts {...commonProps} />
-          </div>
-        );
-    }
-  }, [selectedCategory, searchQuery, selectedStores]);
-
   return (
     <div>
-      <title>BestDeals</title>
-      <div className='menu-container'>
-        <div className='top-menu'>
-        <div className='logo'>Tech<span>Market</span></div>
-          <SearchBar 
-            searchQuery={searchQuery} 
-            setSearchQuery={setSearchQuery} 
-            selectedStores={selectedStores} 
-          />
-          <div className='authentication'>
-            <Link className='log-in' to='/about'>About</Link> 
-            <a className='sign-up' href='https://www.google.com'>Contacts</a>
+      <nav className="menu-container">
+        <div className="top-menu">
+          <div className="logo">Tech<span>Market</span></div>
+          <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} selectedStores={selectedStores} />
+          <div className="authentication">
+            <Link className="log-in" to="/about">About</Link>
+            <a className="sign-up" href="https://www.google.com">Contacts</a>
           </div>
         </div>
-        
-        <div className='filter-buttons'>
-          <div className='laptop-filter' onClick={() => handleCategoryFilter('All')}>All Products</div>
-          <div className='laptop-filter' onClick={() => handleCategoryFilter('Laptops')}>Laptops</div>
-          <div className='laptop-filter' onClick={() => handleCategoryFilter('PC_parts')}>PC Components</div>
-          <div className='laptop-filter' onClick={() => handleCategoryFilter('Monitors')}>Monitors</div>
-          <div className='laptop-filter' onClick={() => handleCategoryFilter('Consoles')}>Consoles</div>
+        <div className="filter-buttons">
+          <Link className="laptop-filter"  to="/store">All Products</Link>
+          <Link className="laptop-filter"  to="/store/laptops">Laptops</Link>
+          <Link className="laptop-filter"  to="/store/gpus">PC Components</Link>
+          <Link className="laptop-filter"  to="/store/monitors">Monitors</Link>
+          <Link className="laptop-filter"  to="/store/consoles">Consoles</Link>
         </div>
-      </div>
+      </nav>
+      
       <FilterMenu 
         stores={stores}
         selectedStores={selectedStores}
@@ -147,9 +109,13 @@ export function ProductList() {
         showStoreDropdown={showStoreDropdown}
         setShowStoreDropdown={setShowStoreDropdown}
       />
-      <div className='products-container'>
-        {renderProducts}
-      </div>
+
+      <Routes>
+        <Route index element={<AllProducts searchQuery={searchQuery} selectedStores={selectedStores} />} />
+        <Route path="laptops" element={<Laptops searchQuery={searchQuery} selectedStores={selectedStores} />} />
+        <Route path="gpus" element={<GPUs searchQuery={searchQuery} selectedStores={selectedStores} />} />
+        {/* Add routes for other categories as needed */}
+      </Routes>
     </div>
   );
 }

@@ -124,9 +124,10 @@ body {
   justify-content: center;
   margin-top: 2%;
   background-color: royalblue;
-  color: white;
 }
 .filter-buttons .laptop-filter {
+  text-decoration: none;
+  color: white;
   display: flex;
   font-size: 90%;
   font-family: "Raleway", sans-serif;

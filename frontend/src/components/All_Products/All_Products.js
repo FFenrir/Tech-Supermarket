@@ -63,10 +63,9 @@ export function AllProducts({ searchQuery, selectedStores = [] }) {
       // This is a GPU
       return (
         <ul>
-          <li>Memory: {product.memory}</li>
-          <li>Memory Interface: {product.memory_interface}</li>
-          <li>Core Clock: {product.core_clock}</li>
-          <li>Boost Clock: {product.boost_clock}</li>
+          <li>{product.base_clock_speed} Clock Speed</li>
+          <li>{product.memory_interface} {product.graphics_card_ram_size} VRAM</li>
+          <li>Dimensions: {product.item_dimensions}</li>
         </ul>
       );
     }
