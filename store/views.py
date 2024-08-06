@@ -9,55 +9,11 @@ from rest_framework.views import APIView
 from .models import Laptop, Graphics_Card
 from .serializers import LaptopSerializer, GPU_Serializer
 from rest_framework.permissions import AllowAny
+import random
 
 from rest_framework.response import Response
 
 # Create your views here.
-
-class LaptopView(generics.ListCreateAPIView):
-    queryset = Laptop.objects.all()
-    serializer_class = LaptopSerializer
-
-class LaptopDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Laptop.objects.all()
-    serializer_class = LaptopSerializer
-
-class GPU_View(generics.ListCreateAPIView):
-    queryset = Graphics_Card.objects.all()
-    serializer_class = GPU_Serializer
-
-class GPU_Detail_View(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Graphics_Card.objects.all()
-    serializer_class = GPU_Serializer
-
-
-class AllProductsView(APIView):
-    permission_classes = [AllowAny]
-    def get(self, request, format=None):
-
-        store = request.query_params.get('store', None)
-
-        laptops = Laptop.objects.all()
-        graphics_cards = Graphics_Card.objects.all()
-
-        laptop_serializer = LaptopSerializer(laptops, many=True)
-        graphics_card_serializer = GPU_Serializer(graphics_cards, many=True)
-
-        # If a store filter is provided, apply it to both querysets
-        if store:
-            laptops = laptops.filter(store__iexact=store)
-            graphics_cards = graphics_cards.filter(store__iexact=store)
-
-        # Serialize the filtered querysets
-        laptop_serializer = LaptopSerializer(laptops, many=True)
-        graphics_card_serializer = GPU_Serializer(graphics_cards, many=True)
-
-
-        # Combine the serialized data
-        combined_data = laptop_serializer.data + graphics_card_serializer.data
-
-        return Response(combined_data, status=status.HTTP_200_OK)
-
 
 class StoreListView(APIView):
     permission_classes = [AllowAny]
@@ -71,3 +27,49 @@ class StoreListView(APIView):
         all_stores = set(laptop_stores) | set(gpu_stores)
         # Return the sorted list of unique store names
         return Response(sorted(all_stores, key=str.lower))
+
+
+class LaptopView(generics.ListCreateAPIView):
+    queryset = Laptop.objects.all()
+    serializer_class = LaptopSerializer
+
+
+class LaptopDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Laptop.objects.all()
+    serializer_class = LaptopSerializer
+
+
+class GPU_View(generics.ListCreateAPIView):
+    queryset = Graphics_Card.objects.all()
+    serializer_class = GPU_Serializer
+
+
+class GPU_Detail_View(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Graphics_Card.objects.all()
+    serializer_class = GPU_Serializer
+
+
+class AllProductsView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, format=None):
+        store = request.query_params.get('store', None)
+
+        # Get all laptops and graphics cards
+        laptops = Laptop.objects.all()
+        graphics_cards = Graphics_Card.objects.all()
+
+        # If a store filter is provided, apply it to both querysets
+        if store:
+            laptops = laptops.filter(store__iexact=store)
+            graphics_cards = graphics_cards.filter(store__iexact=store)
+
+        # Serialize the products with context to include request for building absolute URIs
+        laptops_serialized = LaptopSerializer(laptops, many=True, context={'request': request}).data
+        graphics_cards_serialized = GPU_Serializer(graphics_cards, many=True, context={'request': request}).data
+
+        # Combine and shuffle the products
+        all_products = laptops_serialized + graphics_cards_serialized
+        random.shuffle(all_products)
+
+        return Response(all_products, status=status.HTTP_200_OK)

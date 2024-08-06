@@ -1,20 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-.container {
-  display: flex;
-  gap: 5%;
-  margin-top: 3%;
-  margin-left: 2%;
+.gpu-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
-.product-card {
+.gpu-product-card {
+  display: flex;
+  flex-direction: column;
   height: 577px;
-  width: 20%;
-  overflow: hidden;
   border-radius: 30px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.product-card .product-image-container {
+.gpu-product-card .gpu-product-image-container {
   margin: 0 auto;
   height: 160px;
   width: 100%;
@@ -23,7 +28,7 @@
   align-items: center;
   overflow: hidden;
 }
-.product-card .product-image-container img {
+.gpu-product-card .gpu-product-image-container img {
   margin: 0 auto;
   max-height: 100%;
   max-width: 100%;
@@ -31,63 +36,64 @@
      object-fit: contain;
   border: none;
 }
-.product-card .separator {
+.gpu-product-card .separator {
   height: 1px;
   background-color: #c2bebe;
   margin: 0 auto;
   margin-top: 1.5%;
   width: 60%;
 }
-.product-card .product-info {
+.gpu-product-card .gpu-product-info {
   height: 270px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #888 #f1f1f1;
 }
-.product-card .product-info::-webkit-scrollbar {
+.gpu-product-card .gpu-product-info::-webkit-scrollbar {
   width: 8px;
 }
-.product-card .product-info::-webkit-scrollbar-track {
+.gpu-product-card .gpu-product-info::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 4px;
 }
-.product-card .product-info::-webkit-scrollbar-thumb {
+.gpu-product-card .gpu-product-info::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 4px;
 }
-.product-card .product-info::-webkit-scrollbar-thumb:hover {
+.gpu-product-card .gpu-product-info::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-.product-card .product-info h2 {
+.gpu-product-card .gpu-product-info h2 {
   text-align: center;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 100%;
 }
-.product-card .product-info ul {
+.gpu-product-card .gpu-product-info ul {
   margin-right: 10%;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
-.product-card .product-info ul li {
+.gpu-product-card .gpu-product-info ul li {
   padding: 2%;
   list-style: square;
   font-size: 90%;
 }
-.product-card .product-info .price {
+.gpu-product-card .gpu-product-info .price {
   font-size: 150%;
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
-.product-card .button-container {
+.gpu-product-card .gpu-button-container {
   margin-top: auto;
   padding: 10px 0;
+  text-align: center;
 }
-.product-card .button-container .compare-button {
-  margin-left: 15%;
+.gpu-product-card .gpu-button-container .compare-button {
+  display: inline-block;
   height: 40px;
   width: 70%;
   color: white;
@@ -99,9 +105,9 @@
   font-style: normal;
   cursor: pointer;
 }
-.product-card .button-container .buy-button {
+.gpu-product-card .gpu-button-container .buy-button {
+  display: inline-block;
   margin-top: 3%;
-  margin-left: 15%;
   height: 45px;
   width: 70%;
   color: white;

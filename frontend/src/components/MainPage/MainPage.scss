@@ -10,7 +10,7 @@
 $base-font-size: 16px; // Define a base font size
 
 body {
-  background-color: rgb(224, 248, 240);
+  background-color: rgb(233, 232, 232);
 }
 
 .menu-container {
@@ -20,43 +20,60 @@ body {
 
 .top-menu {
   display: flex;
-  gap: 18%;
+  gap: 20%;
   width: 100%;
   margin-top: 4%;
   text-align: center;
+
+  .logo {
+    margin-left: 5%;
+    position: relative;
+    font-size: 1.7em; // relative font size based on $base-font-size
+    font-family: 'Bruno Ace SC', cursive;
+    color: white;
+    font-family: "Anton", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: royalblue;
+
+    span {
+      color: royalblue;
+      -webkit-text-stroke-width: 0px;
+    }
+  }
   
   .search-bar-container {
+    width: 30%;
     display: flex;
-    margin-left: 8%;
+    align-items: center;
+    border: 1px solid royalblue;
+    border-radius: 20px;
+    overflow: hidden; // This will ensure the child elements don't overflow the rounded corners
   }
   
   .search-bar {
-    border: none; // Reset all borders
-    height: 80%;
-    width: 100%;
-    border-bottom: 0.2px solid black;  
+    flex-grow: 1;
+    border: none;
+    padding: 10px 15px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1em;
+    background-color: white;
+    color: #202020;
   
-    input {
-      font-family: 'Bebas Neue', cursive;
-    }
-
-    input:focus {
-      border: none; // Reset borders again on focus
+    &:focus {
       outline: none;
+      //box-shadow: inset 0 0 0 2px royalblue; // This creates an inner glow effect when focused
     }
   
     &::placeholder {
-      padding: 0 10px;
+      color: #999;
     }
+  }
   
-    .search-button {
-      background-color: royalblue;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+  .search-icon {
+    padding: 0 15px;
+    color: royalblue;
   }
   
 
@@ -102,7 +119,7 @@ body {
         left: 0;
         bottom: -3px;
         width: 0;
-        height: 1px;
+        height: 2px;
         background-color: black;
         transition: width 0.3s ease;
       }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Graphics_Cards.css';
+import './Graphics_Cards.scss';
 
 export function GPUs({ searchQuery, onAddToCompare ,selectedStores = [] }) {
   const [products, setProducts] = useState([]);
@@ -47,14 +47,14 @@ export function GPUs({ searchQuery, onAddToCompare ,selectedStores = [] }) {
   }
 
   return (
-    <div className='container'>
+    <div className='gpu-container'>
       {filteredProducts.map(product => (
-        <div key={product.id} className='product-card'>
-            <div className='product-image-container'>
+        <div key={product.id} className='gpu-product-card'>
+            <div className='gpu-product-image-container'>
               <img src={product.image} alt={product.name} className='product-image' />
             </div>
             <div className='separator'></div>
-            <div className='product-info'>
+            <div className='gpu-product-info'>
               <h2>{product.name}</h2>
               <span>Specs</span>
               <ul>
@@ -63,7 +63,7 @@ export function GPUs({ searchQuery, onAddToCompare ,selectedStores = [] }) {
                 <li>Dimensions: {product.item_dimensions}</li>
               </ul>
             </div>
-          <div className='button-container'>
+          <div className='gpu-button-container'>
             <button className='compare-button' onClick={() => onAddToCompare({ ...product, category: 'GPU' })}>Compare +</button>
             <a href={product.product_link} style={{ color: 'inherit', textDecoration: 'none' }}>
                   <button 

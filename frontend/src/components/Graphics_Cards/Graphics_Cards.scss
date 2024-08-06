@@ -4,21 +4,24 @@
 
 
 
-.container {
-  display: flex;
-  gap: 5%;
-  margin-top: 3%;
-  margin-left: 2%;
-  
+.gpu-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
-.product-card {
+.gpu-product-card {
+  display: flex;
+  flex-direction: column;
   height: 577px;
-  width: 20%;
-  overflow: hidden;
   border-radius: 30px;
-  //box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-  .product-image-container {
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  .gpu-product-image-container {
     margin: 0 auto;
     height: 160px;
     width: 100%;
@@ -50,7 +53,7 @@
     width: 60%;
   }
 
-  .product-info {
+  .gpu-product-info {
     height: 270px;
     overflow-y: auto;
     
@@ -105,12 +108,13 @@
   }
   }
   
-  .button-container {
+  .gpu-button-container {
     margin-top: auto;
     padding: 10px 0;
+    text-align: center;
 
     .compare-button {
-      margin-left: 15%;
+      display: inline-block;
       height: 40px;
       width: 70%;
       color: white;
@@ -124,8 +128,8 @@
     }
 
     .buy-button {
+      display: inline-block;
       margin-top: 3%;
-      margin-left: 15%;
       height: 45px;
       width: 70%;
       color: white;

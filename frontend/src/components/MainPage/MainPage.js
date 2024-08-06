@@ -5,6 +5,7 @@ import './MainPage.css'
 
 import { GPUs } from '../Graphics_Cards/Graphics_Cards';
 import { Laptops } from '../Laptops/Laptops';
+import { AllProducts } from '../All_Products/All_Products';
 import axios from 'axios';
 
 const SearchBar = React.memo(({ searchQuery, setSearchQuery, selectedStores }) => (
@@ -106,8 +107,9 @@ export function ProductList() {
       default:
         return (
           <div className="mixed-products">
-            <Laptops {...commonProps} />
-            <GPUs {...commonProps} />
+            {/*<Laptops {...commonProps} />
+            <GPUs {...commonProps} />*/}
+            <AllProducts {...commonProps} />
           </div>
         );
     }
@@ -118,6 +120,7 @@ export function ProductList() {
       <title>BestDeals</title>
       <div className='menu-container'>
         <div className='top-menu'>
+        <div className='logo'>Tech<span>Market</span></div>
           <SearchBar 
             searchQuery={searchQuery} 
             setSearchQuery={setSearchQuery} 
@@ -125,7 +128,6 @@ export function ProductList() {
           />
           <div className='authentication'>
             <Link className='log-in' to='/about'>About</Link> 
-            <div className='logo'>Best<span>Deals</span></div>
             <a className='sign-up' href='https://www.google.com'>Contacts</a>
           </div>
         </div>
