@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Michroma&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  --bg-shape-color: linear-gradient(120deg, #343A4F, #0F1620);
+}
+
+*, button, input {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+.laptop-layout-container {
+  margin-top: 3%;
+  display: flex;
+  width: 100%;
+  padding: 20px;
+}
+
+.laptop-filters-section {
+  width: 250px;
+  margin-right: 20px;
+  background-color: #343A4F;
+  padding: 20px;
+  border-radius: 10px;
+  color: #D5E1EF;
+}
+
+.laptop-laptops-container {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.laptop-card {
+  flex: 0 0 calc(33.33% - 13.33px);
+  min-width: 180px;
+  border-radius: 20px;
+  background-color: #343A4F;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  color: #D5E1EF;
+}
+.laptop-card .laptop-productinfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  padding: 25px;
+}
+.laptop-card .laptop-productinfo .laptop-productImage {
+  width: 100%;
+  padding-top: 75%;
+  position: relative;
+  overflow: hidden;
+}
+.laptop-card .laptop-productinfo .laptop-productImage img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.laptop-card h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  color: #D5E1EF;
+}
+.laptop-card .laptop-productSpecifications {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.laptop-card .laptop-productSpecifications h1 {
+  margin-top: 5px;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+.laptop-card .laptop-productSpecifications .laptop-productFeatures {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  flex-grow: 1;
+}
+.laptop-card .laptop-productSpecifications .laptop-productFeatures .laptop-feature {
+  display: flex;
+  margin-bottom: 8px;
+}
+.laptop-card .laptop-productSpecifications .laptop-productFeatures .laptop-feature .laptop-featureIcon {
+  width: 30px;
+  height: 30px;
+  background-image: var(--bg-shape-color);
+  border-radius: 6px;
+  margin-right: 8px;
+}
+.laptop-card .laptop-productSpecifications .laptop-productFeatures .laptop-feature .laptop-featureText p {
+  font-size: 13px;
+  color: #D5E1EF;
+}
+.laptop-card .laptop-productSpecifications .laptop-productFeatures .laptop-feature .laptop-featureText p:first-child {
+  font-weight: bold;
+}
+.laptop-card .laptop-checkoutButton {
+  display: flex;
+  width: 100%;
+  background-color: #343A4F;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: -2px -2px 2px 0px rgba(80, 80, 80, 0.1), 2px 2px 3px 0px rgba(12, 12, 12, 0.3), inset 0px 0px 0px 2px rgba(80, 80, 80, 0.2);
+  margin-top: auto;
+  padding: 8px;
+  justify-content: space-between;
+  align-items: center;
+}
+.laptop-card .laptop-checkoutButton .laptop-priceTag {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+}
+.laptop-card .laptop-checkoutButton .laptop-priceTag span {
+  color: #488dc7;
+  font-size: 20px;
+}
+.laptop-card .laptop-checkoutButton .laptop-preorder {
+  outline: 0;
+  border: 0;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-image: linear-gradient(85deg, #61c7ef, #4833fb);
+  color: white;
+}
+.laptop-card .laptop-checkoutButton .laptop-preorder p {
+  padding: 7px 10px;
+  font-size: 15px;
+}
+
+@media screen and (max-width: 1200px) {
+  .laptop-card {
+    flex: 0 0 calc(50% - 10px);
+  }
+}
+@media screen and (max-width: 992px) {
+  .laptop-layout-container {
+    flex-direction: column;
+  }
+  .laptop-filters-section {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  .laptop-card {
+    flex: 0 0 calc(50% - 10px);
+  }
+}
+@media screen and (max-width: 768px) {
+  .laptop-card {
+    flex: 0 0 100%;
+  }
+}
+.filter-group {
+  margin-top: 10%;
+  margin-bottom: 15px;
+}
+.filter-group h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.filter-option {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.filter-option input[type=checkbox] {
+  margin-right: 5px;
+}/*# sourceMappingURL=Laptops.css.map */

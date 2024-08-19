@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+
+:root {
+  --bg-shape-color: linear-gradient(120deg, #343A4F, #0F1620);
+}
+
+*, button, input {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.all-products-layout-container {
+  margin-top: 3%;
+  display: flex;
+  width: 100%;
+  padding: 20px;
+}
+
+.filters-section {
+  width: 250px;
+  margin-right: 20px;
+  background-color: #343A4F;
+  padding: 20px;
+  border-radius: 10px;
+  color: #D5E1EF;
+
+  h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+  }
+
+  .filter-group {
+    margin-bottom: 15px;
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .filter-option {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+
+      input[type="checkbox"] {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.products-container {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.product-card {
+  flex: 0 0 calc(33.33% - 13.33px); // 3 cards per row
+  min-width: 180px;
+  border-radius: 20px;
+  background-color: #343A4F;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  color: #D5E1EF;
+
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    padding: 25px;
+
+    .product-image {
+      width: 100%;
+      height: 180px; // Fixed height for consistency
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+
+      img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain; // Ensure the image fits within the container without being cropped
+          display: block; // Ensure the image behaves as a block-level element
+      }
+  }
+  }
+
+  .product-specifications {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    h1 {
+      margin-top: 5px;
+      margin-bottom: 8px;
+      font-size: 18px;
+      font-family: "Poppins", sans-serif;
+      color: #D5E1EF;
+    }
+
+    .product-features {
+      display: flex;
+      flex-direction: column;
+      margin-top: 8px;
+      flex-grow: 1;
+
+      .product-feature {
+        display: flex;
+        margin-bottom: 8px;
+
+        .feature-icon {
+          width: 30px;
+          height: 30px;
+          background-image: var(--bg-shape-color);
+          border-radius: 6px;
+          margin-right: 8px;
+        }
+
+        .feature-text {
+          p {
+            font-size: 13px;
+            color: #D5E1EF;
+
+            &:first-child {
+              font-weight: bold;
+              font-family: "Poppins", 'sans-serif';
+            }
+          }
+        }
+      }
+    }
+
+    .checkout-button {
+      display: flex;
+      width: 100%;
+      background-color: #343A4F;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: -2px -2px 2px 0px rgba(80, 80, 80, 0.1), 2px 2px 3px 0px rgba(12, 12, 12, 0.3), inset 0px 0px 0px 2px rgba(80, 80, 80, 0.2);
+      margin-top: auto;
+      padding: 8px;
+      justify-content: space-between;
+      align-items: center;
+
+      .price-tag {
+        display: flex;
+        align-items: center;
+        font-size: 22px;
+
+        span {
+          color: #488dc7;
+          font-size: 20px;
+        }
+      }
+
+      .view-at-store {
+        cursor: pointer;
+        outline: 0;
+        border: 0;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background-image: linear-gradient(85deg, #61c7ef, #4833fb);
+        color: white;
+
+        p {
+          padding: 7px 10px;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+// Media queries for responsiveness
+@media screen and (max-width: 1200px) {
+  .product-card {
+    flex: 0 0 calc(50% - 10px); // 2 cards per row
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .all-products-layout-container {
+    flex-direction: column;
+  }
+
+  .filters-section {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .product-card {
+    flex: 0 0 calc(50% - 10px); // 2 cards per row
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .product-card {
+    flex: 0 0 100%; // 1 card per row
+  }
+}

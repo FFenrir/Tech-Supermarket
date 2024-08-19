@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+.about-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.about-container .logo-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.about-container .logo-container .logo {
+  position: relative;
+  font-size: 200%;
+  font-family: "Anton", sans-serif;
+  color: white;
+  font-weight: 300;
+  font-style: normal;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: royalblue;
+}
+.about-container .logo-container .logo span {
+  color: royalblue;
+  -webkit-text-stroke-width: 0px;
+}
+.about-container .about {
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+.about-container .about p {
+  font-family: "Oswald", sans-serif;
+  font-size: 160%;
+  margin-bottom: 1rem;
+  text-align: justify;
+  color: #333;
+}
+.about-container .about p:last-child {
+  margin-bottom: 0;
+}/*# sourceMappingURL=About.css.map */

@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Reem+Kufi+Fun&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+body {
+  background-image: linear-gradient(90deg, #414850, #131720);
+}
+
+.menu-container {
+  border-bottom-left-radius: 200px;
+  border-bottom-right-radius: 200px;
+}
+
+.top-menu {
+  margin-top: 1.5%;
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.top-menu .links {
+  display: flex;
+  gap: 15%;
+  margin-left: 2%;
+  align-items: center;
+  font-size: 1.4em;
+}
+.top-menu .links .about,
+.top-menu .links .feedback {
+  font-size: 80%;
+  color: #e2e2e2;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.top-menu .links .about::after,
+.top-menu .links .feedback::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1.5px;
+  background-color: #e2e2e2;
+  transition: width 0.3s ease;
+}
+.top-menu .links .about:hover::after,
+.top-menu .links .feedback:hover::after {
+  width: 100%;
+}
+.top-menu .search-bar-container {
+  flex: 0 1 300px;
+  height: 35px;
+  border: 1px solid rgb(196, 196, 196);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.top-menu .search-bar {
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 10px 15px;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  background-image: linear-gradient(90deg, #414850, #131720);
+  color: rgb(196, 196, 196);
+}
+.top-menu .search-bar:focus {
+  outline: none;
+}
+.top-menu .search-bar::-moz-placeholder {
+  color: #c2c2c2;
+}
+.top-menu .search-bar::placeholder {
+  color: #c2c2c2;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 2%;
+  justify-content: center;
+  margin-top: 2%;
+}
+.filter-buttons .laptop-filter {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  gap: 5%;
+  align-items: center;
+  white-space: nowrap;
+  padding: 10px;
+  cursor: pointer;
+  position: relative;
+  transition: border-top-color 0.5s ease-in-out, border-bottom-color 0.5s ease-in-out;
+}
+.filter-buttons .laptop-filter:hover {
+  border: 0.5px solid rgb(196, 196, 196);
+  border-radius: 7px;
+}
+.filter-buttons .laptop-filter::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.filter-button {
+  background-color: #414850;
+  position: relative;
+  display: flex;
+  gap: 15%;
+  height: 35px;
+  width: 10%;
+  cursor: pointer;
+  text-align: center;
+  align-items: center;
+  margin-top: 3.5%;
+  margin-left: 3%;
+  border: 0.7px solid rgb(196, 196, 196);
+  border-radius: 6px;
+  color: rgb(196, 196, 196);
+  font-family: "Poppins", sans-serif;
+  font-size: 90%;
+}
+
+.store-dropdown {
+  justify-content: center;
+  margin-top: 1.5%;
+  margin-left: 2%;
+  height: 100px;
+  width: 12%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.store-dropdown label {
+  margin-left: 2em;
+}
+
+@media (max-width: 768px) {
+  .top-menu {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  .top-menu .links {
+    font-size: 1.2em;
+  }
+  .top-menu .search-bar-container {
+    flex: 0 1 200px;
+  }
+  .filter-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+@media (max-width: 600px) {
+  .top-menu {
+    padding: 10px 5%;
+  }
+  .top-menu .links {
+    font-size: 1em;
+  }
+  .top-menu .search-bar-container {
+    flex: 0 1 150px;
+  }
+  .filter-buttons .laptop-filter {
+    font-size: 13px;
+    padding: 8px;
+  }
+}
+@media (min-width: 1920px) {
+  .top-menu .search-bar-container {
+    flex: 0 1 400px;
+  }
+}/*# sourceMappingURL=MainPage.css.map */
