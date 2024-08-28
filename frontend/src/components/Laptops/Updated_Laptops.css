@@ -1,1 +1,68 @@
-/*# sourceMappingURL=Updated_Laptops.css.map */
+.laptop-layout-container {
+  position: relative;
+}
+
+.hamburger-menu {
+  display: none;
+  background-image: linear-gradient(85deg, #61c7ef, #4833fb);
+  border-radius: 10px;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  width: 30%;
+  text-align: left;
+}
+
+.laptop-filters-section {
+  padding: 10px;
+  background-color: #343A4F;
+  border-bottom: 1px solid #ccc;
+  display: none; /* Initially hidden for mobile/tablet */
+  position: absolute;
+  width: 90%; /* Make the filters section narrower */
+  left: 50%; /* Position in the middle horizontally */
+  transform: translateX(-50%); /* Center the element */
+  z-index: 1000;
+  top: 0;
+}
+
+.laptop-laptops-container {
+  margin-top: 0;
+  transition: margin-top 0.3s ease-in-out;
+}
+
+.laptop-laptops-container.shifted-down {
+  margin-top: 200px;
+}
+
+@media (max-width: 995px) {
+  .hamburger-menu {
+    display: block;
+  }
+  .laptop-filters-section.show {
+    display: block;
+  }
+  .laptop-laptops-container.shifted-down {
+    margin-top: 200px;
+  }
+}
+@media (min-width: 995px) {
+  .hamburger-menu {
+    display: none;
+  }
+  .laptop-filters-section {
+    display: block;
+    position: relative;
+    top: auto;
+    width: auto;
+    margin-top: 0;
+    border-bottom: none;
+    left: 0;
+    transform: none;
+  }
+  .laptop-laptops-container {
+    margin-top: 0;
+  }
+}/*# sourceMappingURL=Updated_Laptops.css.map */

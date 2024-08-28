@@ -81,19 +81,22 @@ class AllProductsView(APIView):
         laptops = Laptop.objects.all()
         graphics_cards = Graphics_Card.objects.all()
         monitors = Monitor.objects.all()
+        consoles = Console.objects.all()
 
         # If a store filter is provided, apply it to both querysets
         if store:
             laptops = laptops.filter(store__iexact=store)
             graphics_cards = graphics_cards.filter(store__iexact=store)
             monitors = monitors.filter(store__iexact=store)
+            consoles = consoles.filter(store__iexact=store)
 
         # Serialize the products with context to include request for building absolute URIs
         laptops_serialized = LaptopSerializer(laptops, many=True, context={'request': request}).data
         graphics_cards_serialized = GPU_Serializer(graphics_cards, many=True, context={'request': request}).data
         monitors_serialized = MonitorSerializer(monitors, many=True, context={'request':request}).data
+        consoles_serialized = ConsoleSerializer(consoles, many=True, context={'request':request}).data
         # Combine the products
-        all_products = laptops_serialized + graphics_cards_serialized + monitors_serialized
+        all_products = laptops_serialized + graphics_cards_serialized + monitors_serialized + consoles_serialized
 
 
 

@@ -20,12 +20,19 @@
 }
 
 .filters-section {
+  display: flex;
+  flex-direction: column;
+  
+  max-height: 100%;
+  position: sticky;
+  top: 20px;
   width: 250px;
   margin-right: 20px;
   background-color: #343A4F;
   padding: 20px;
   border-radius: 10px;
   color: #D5E1EF;
+  overflow-y: auto;
 
   h2 {
     margin-bottom: 15px;
@@ -209,5 +216,7 @@
 @media screen and (max-width: 768px) {
   .product-card {
     flex: 0 0 100%; // 1 card per row
+    width: 60%;
   }
 }
+

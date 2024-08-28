@@ -6,12 +6,14 @@ from io import BytesIO
 from django.core.files.base import ContentFile
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+import uuid
 
 # Create your models here.
 
 
 
 class ProductBaseModel(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     store = models.CharField(max_length=255)
     product_link = models.CharField(max_length=1000, blank=True)
     name = models.CharField(max_length=100)

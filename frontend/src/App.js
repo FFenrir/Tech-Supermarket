@@ -6,7 +6,7 @@ import { MainPage } from './components/MainPage/MainPage';
 import { About } from './components/About/About';
 import { SearchBar } from './components/SearchComponent/Search';
 import { Laptops } from './components/Laptops/Updated_Laptops';
-
+import { Feedback } from './components/Feedback/Feedback';
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
         {/*<Route path="/" element={<Welcome />} />*/}
         <Route path="/*" element={< MainPage/>} />
         <Route path="/about" element={<About />} />
+        <Route path='/feedback' element={<Feedback />} />
         <Route path="/search" element={<SearchBar />}/>
         <Route path="/updated" element={<Laptops/>}/>
       </Routes>

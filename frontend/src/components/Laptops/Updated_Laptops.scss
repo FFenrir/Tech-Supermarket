@@ -1,0 +1,73 @@
+.laptop-layout-container {
+    position: relative;
+}
+
+.hamburger-menu {
+    display: none;
+    background-image: linear-gradient(85deg, #61c7ef, #4833fb);
+    border-radius: 10px;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 30%;
+    text-align: left;
+}
+
+.laptop-filters-section {
+    padding: 10px;
+    background-color: #343A4F;
+    border-bottom: 1px solid #ccc;
+    display: none; /* Initially hidden for mobile/tablet */
+    position: absolute;
+    width: 90%; /* Make the filters section narrower */
+    left: 50%; /* Position in the middle horizontally */
+    transform: translateX(-50%); /* Center the element */
+    z-index: 1000;
+    top: 0;
+}
+
+.laptop-laptops-container {
+    margin-top: 0;
+    transition: margin-top 0.3s ease-in-out;
+}
+
+.laptop-laptops-container.shifted-down {
+    margin-top: 200px; // Adjust this value based on the height of your filters section for mobile/tablet screens
+}
+
+@media (max-width: 995px) {
+    .hamburger-menu {
+        display: block;  // Display the hamburger menu only on mobile and tablet screens
+    }
+
+    .laptop-filters-section.show {
+        display: block;  // Show filters when hamburger menu is clicked
+    }
+
+    .laptop-laptops-container.shifted-down {
+        margin-top: 200px;  // Adjust this value as needed
+    }
+}
+
+@media (min-width: 995px) {
+    .hamburger-menu {
+        display: none;  // Hide the hamburger menu on PC screens
+    }
+
+    .laptop-filters-section {
+        display: block;  // Always display filters in their current position on PC screens
+        position: relative;
+        top: auto;
+        width: auto;
+        margin-top: 0;
+        border-bottom: none;
+        left: 0;
+        transform: none;
+    }
+
+    .laptop-laptops-container {
+        margin-top: 0;
+    }
+}

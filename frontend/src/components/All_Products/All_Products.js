@@ -27,6 +27,7 @@ export function AllProducts({ searchQuery, selectedStores = [] }) {
         };
 
         fetchProducts();
+        document.title = "TechMarket | All products"
     }, []);
 
     const updateFilterOptions = (products) => {
@@ -56,105 +57,58 @@ export function AllProducts({ searchQuery, selectedStores = [] }) {
     });
 
     const renderProductDetails = (product) => {
-        if ('screen_display_size' in product) {
-            // This is a laptop
-            return (
-                <>
-                    <div className="product-feature">
-                        <div className="feature-icon"></div>
-                        <div className="feature-text">
-                            <p><strorng>Screen</strorng></p>
-                            <p>{product.screen_display_size}'' - {product.screen_resolution}p</p>
-                        </div>
+        const features = [];
+    
+        const addFeature = (label, value) => {
+            features.push(
+                <div className="product-feature" key={label}>
+                    <div className="feature-icon"></div>
+                    <div className="feature-text">
+                        <p><strong>{label}</strong></p>
+                        <p>{value}</p>
                     </div>
-                    <div className="product-feature">
-                        <div className="feature-icon"></div>
-                        <div className="feature-text">
-                            <p><strong>CPU</strong></p>
-                            <p>{product.processor}</p>
-                        </div>
-                    </div>
-                    <div className="product-feature">
-                        <div className="feature-icon"></div>
-                        <div className="feature-text">
-                            <p><strong>GPU</strong></p>
-                            <p>{product.graphics_processor}</p>
-                        </div>
-                    </div>
-                    <div className="product-feature">
-                        <div className="feature-icon"></div>
-                        <div className="feature-text">
-                            <p><strong>RAM</strong></p>
-                            <p>{product.ram}</p>
-                        </div>
-                    </div>
-                    <div className="product-feature">
-                        <div className="feature-icon"></div>
-                        <div className="feature-text">
-                            <p><strong>Storage</strong></p>
-                            <p>{product.hard_drive}</p>
-                        </div>
-                    </div>
-                </>
+                </div>
             );
-        } if ('base_clock_speed' in product) {
-            // This is a GPU
-            return (
-                <>
-                    <div className="product-feature">
-                        <div className="feature-icon"></div>
-                        <div className="feature-text">
-                            <p><strong>Clock Speed</strong></p>
-                            <p>{product.base_clock_speed}</p>
-                        </div>
-                    </div>
-                    <div className="product-feature">
-                        <div className="feature-icon"></div>
-                        <div className="feature-text">
-                            <p><strong>Memory</strong></p>
-                            <p>{product.memory_interface} {product.graphics_card_ram_size} VRAM</p>
-                        </div>
-                    </div>
-                    <div className="product-feature">
-                        <div className="feature-icon"></div>
-                        <div className="feature-text">
-                            <p><strong>Dimensions</strong></p>
-                            <p>{product.item_dimensions}</p>
-                        </div>
-                    </div>
-                </>
-            );
-        }
-        if ('monitor_display_resolution' in product) {
-            // This is a GPU
-            return (
-                <>
-                    <div className="product-feature">
-                        <div className="feature-icon"></div>
-                        <div className="feature-text">
-                            <p><strong>Screen size</strong></p>
-                            <p>{product.monitor_display_size}</p>
-                        </div>
-                    </div>
-                    <div className="product-feature">
-                        <div className="feature-icon"></div>
-                        <div className="feature-text">
-                            <p><strong>Scrren resolution</strong></p>
-                            <p>{product.monitor_display_resolution}</p>
-                        </div>
-                    </div>
-                    <div className="product-feature">
-                        <div className="feature-icon"></div>
-                        <div className="feature-text">
-                            <p><strong>Refresh rate</strong></p>
-                            <p>{product.monitor_display_refresh_rate}</p>
-                        </div>
-                    </div>
-                </>
-            );
-        }
+        };
+    
+        switch (true) {
+            case 'screen_display_size' in product:
+                // This is a laptop
+                addFeature('Screen', `${product.screen_display_size}'' - ${product.screen_resolution}p`);
+                addFeature('CPU', product.processor);
+                addFeature('GPU', product.graphics_processor);
+                addFeature('RAM', product.ram);
+                addFeature('Storage', product.hard_drive);
+                break;
+    
+            case 'base_clock_speed' in product:
+                // This is a GPU
+                addFeature('Clock Speed', product.base_clock_speed);
+                addFeature('Memory', `${product.memory_interface} ${product.graphics_card_ram_size} VRAM`);
+                addFeature('Dimensions', product.item_dimensions);
+                break;
+    
+            case 'monitor_display_resolution' in product:
+                // This is a monitor
+                addFeature('Screen size', product.monitor_display_size);
+                addFeature('Screen resolution', product.monitor_display_resolution);
+                addFeature('Refresh rate', product.monitor_display_refresh_rate);
+                break;
+            
+            case 'controller' in product:
+                // Console
+                addFeature('Brand', product.brand);
+                addFeature('Controller', product.controller);
+                break
 
+
+            default:
+                return null;
+        }
+    
+        return features;
     };
+    
 
     if (loading) {
         return <div style={{ textAlign: 'center' }}>Loading...</div>;

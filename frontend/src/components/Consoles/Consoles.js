@@ -26,6 +26,7 @@ export function Consoles({ searchQuery, selectedStores = [] }) {
         };
 
         fetchProducts();
+        document.title = "TechMarket | Consoles"
     }, []);
 
     const updateFilterOptions = (products) => {

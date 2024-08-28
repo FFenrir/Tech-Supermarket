@@ -5,6 +5,7 @@ import { GPUs } from '../Graphics_Cards/Graphics_Cards';
 import { AllProducts } from '../All_Products/All_Products';
 import { Monitors } from '../Monitors/Monitors';
 import { Consoles } from '../Consoles/Consoles';
+import { Display, Pc, Laptop, Grid, Playstation } from 'react-bootstrap-icons'
 
 import './MainPage.css';
 
@@ -33,16 +34,16 @@ export function MainPage() {
         <div className="top-menu">  
           <div className="links">
             <Link className="about" to="/about">About</Link>
-            <a className="feedback" href="https://www.google.com">Feedback</a>
+            <Link className="feedback" to="/feedback">Feedback</Link>
           </div>
           <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} selectedStores={selectedStores} />
         </div>
         <div className="filter-buttons">
-          <Link className="laptop-filter" to="/store">All Products</Link>
-          <Link className="laptop-filter" to="/store/laptops">Laptops</Link>
-          <Link className="laptop-filter" to="/store/gpus">PC Components</Link>
-          <Link className="laptop-filter" to="/store/monitors">Monitors</Link>
-          <Link className="laptop-filter" to="/store/consoles">Consoles</Link>
+          <Link className="laptop-filter" to="/"><Grid color='white' size={25}/> All Products</Link>
+          <Link className="laptop-filter" to="/laptops"><Laptop color='white' size={25}/>Gaming Laptops</Link>
+          <Link className="laptop-filter" to="/gpus"><Pc color='white' size={25}/>Desktops</Link>
+          <Link className="laptop-filter" to="/monitors"><Display color='white' size={25}/>Monitors</Link>
+          <Link className="laptop-filter" to="/consoles"><Playstation color='white' size={25}/> Consoles</Link>
         </div>
       </nav>
 

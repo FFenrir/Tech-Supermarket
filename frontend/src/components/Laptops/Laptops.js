@@ -6,6 +6,7 @@ export function Laptops({ searchQuery, selectedStores = [] }) {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [showFilters, setShowFilters] = useState(false);
     const [filters, setFilters] = useState({
         processor: [],
         ram: [],
@@ -29,6 +30,7 @@ export function Laptops({ searchQuery, selectedStores = [] }) {
         };
 
         fetchProducts();
+        document.title = "TechMarket | Laptops"
     }, []);
 
     const updateFilterOptions = (products) => {
